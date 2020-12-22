@@ -41,15 +41,15 @@ Things you may want to cover:
 | birth_date          | date   | null: false |
 
 ### Association
-- has_many items
-- has_many oder
+- has_many :items
+- has_many :order
 
 
 ## items テーブル
 
 | Column              | Type       | Options                        |
 | ------------------- | -----------| ----------------------------   |
-| user_id             | references | null: false, foreign_key: true |   
+| user                | references | null: false, foreign_key: true |   
 | name                | string     | null: false                    |   
 | description         | text       | null: false                    |
 | category_id         | integer    | null: false                    |
@@ -60,8 +60,8 @@ Things you may want to cover:
 | price               | integer    | null: false                    |
 
 ### Association
--has_one order  
--belongs_to user
+-has_one :order  
+-belongs_to :user
 
 
 ## order テーブル
@@ -69,8 +69,8 @@ Things you may want to cover:
 | Column        | Type       | Options                        |
 | ------        | ---------- | ------------------------------ |
 | user_id       | references | null: false, foreign_key: true |
-| item_id      | references | null: false, foreign_key: true |
-|postal_code    | integer    | null: false                    |
+| item_id       | references | null: false, foreign_key: true |
+|postal_code    | string    | null: false                    |
 |prefectures_id | integer    | null: false,                   |
 |municipalities | string     | null: false,                   |
 |house_number   | string     | null: false,                   |
@@ -92,6 +92,15 @@ Things you may want to cover:
 | user_id   | references | null: false, foreign_key: true |
 | addresses | string     | null: false                    |
 | order_id  | references | null: false, foreign_key: true |
+|postal_code    | string    | null: false                    |
+|prefectures_id | integer    | null: false,                   |
+|municipalities | string     | null: false,                   |
+|house_number   | string     | null: false,                   |
+|building_name  | string     |                                |
+|phone_number   | string     | null: false,                   |
+
+
+
 ### Association
  -belongs_to :order
  
