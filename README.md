@@ -38,42 +38,60 @@ Things you may want to cover:
 | family_name        | string | null: false |
 | surname_k          | string | null: false |
 | family_name_k      | string | null: false |
-| birthDate          | date   | null: false |
+| birth_date          | date   | null: false |
 
 ### Association
 - has_many items
-- has_many purchase＿history 
+- has_many oder
 
 
 ## items テーブル
 
 | Column              | Type       | Options                        |
 | ------------------- | -----------| ----------------------------   |
-| user                | references | null: false, foreign_key: true |   
-| item_name           | string     | null: false                    |   
-| item_description    | string     | null: false                    |
-| category_id         | references | null: false, foreign_key: true |
-| product_condition_id| references | null: false, foreign_key: true |
-| shipping_charges_id | references | null: false, foreign_key: true |
-| area_id             | references | null: false, foreign_key: true |
-| days_id             | references | null: false  foreign_key: true |
+| user_id             | references | null: false, foreign_key: true |   
+| name                | string     | null: false                    |   
+| description         | text       | null: false                    |
+| category_id         | integer    | null: false                    |
+| product_condition_id| integer    | null: false,                   |
+| shipping_charges_id | integer    | null: false,                   |
+| prefectures_id      | integer    | null: false,                   |
+| days_id             | integer    | null: false                    |
 | price               | integer    | null: false                    |
 
-
-
 ### Association
--has_one purchase＿history  
+-has_one order  
 -belongs_to user
 
-## purchase＿history テーブル
 
-| Column   | Type       | Options                        |
-| ------   | ---------- | ------------------------------ |
-| user  id | references | null: false, foreign_key: true |
-| item  id | references | null: false, foreign_key: true |
+## order テーブル
+
+| Column        | Type       | Options                        |
+| ------        | ---------- | ------------------------------ |
+| user_id       | references | null: false, foreign_key: true |
+| item_id      | references | null: false, foreign_key: true |
+|postal_code    | integer    | null: false                    |
+|prefectures_id | integer    | null: false,                   |
+|municipalities | string     | null: false,                   |
+|house_number   | string     | null: false,                   |
+|building_name  | string     |                                |
+|phone_number   | string     | null: false,                   |
+
+
 
 ### Association
-
 -belongs_to :user
 -belongs_to :item
+-has_one :addresses
 
+
+### addressesテーブル
+
+| Column    | Type       | Options                        |
+| ------    | ---------- | ------------------------------ |
+| user_id   | references | null: false, foreign_key: true |
+| addresses | string     | null: false                    |
+
+### Association
+ -belongs_to :order
+ 
