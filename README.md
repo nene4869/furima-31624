@@ -42,7 +42,7 @@ Things you may want to cover:
 
 ### Association
 - has_many :items
-- has_many :order
+- has_many :orders
 
 
 ## items テーブル
@@ -68,15 +68,8 @@ Things you may want to cover:
 
 | Column        | Type       | Options                        |
 | ------        | ---------- | ------------------------------ |
-| user_id       | references | null: false, foreign_key: true |
-| item_id       | references | null: false, foreign_key: true |
-|postal_code    | string    | null: false                    |
-|prefectures_id | integer    | null: false,                   |
-|municipalities | string     | null: false,                   |
-|house_number   | string     | null: false,                   |
-|building_name  | string     |                                |
-|phone_number   | string     | null: false,                   |
-
+| user          | references | null: false, foreign_key: true |
+| item          | references | null: false, foreign_key: true |
 
 
 ### Association
@@ -87,12 +80,11 @@ Things you may want to cover:
 
 ### addressesテーブル
 
-| Column    | Type       | Options                        |
-| ------    | ---------- | ------------------------------ |
-| user_id   | references | null: false, foreign_key: true |
-| addresses | string     | null: false                    |
-| order_id  | references | null: false, foreign_key: true |
-|postal_code    | string    | null: false                    |
+| Column        | Type       | Options                        |
+| ------        | ---------- | ------------------------------ |
+| addresses     | string     | null: false                    |
+| order         | references | null: false, foreign_key: true |
+|postal_code    | string     | null: false                    |
 |prefectures_id | integer    | null: false,                   |
 |municipalities | string     | null: false,                   |
 |house_number   | string     | null: false,                   |
