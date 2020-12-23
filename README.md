@@ -54,9 +54,9 @@ Things you may want to cover:
 | description         | text       | null: false                    |
 | category_id         | integer    | null: false                    |
 | product_condition_id| integer    | null: false,                   |
-| shipping_charges_id | integer    | null: false,                   |
-| prefectures_id      | integer    | null: false,                   |
-| days_id             | integer    | null: false                    |
+| shipping_charge_id  | integer    | null: false,                   |
+| prefecture_id       | integer    | null: false,                   |
+| day_id              | integer    | null: false                    |
 | price               | integer    | null: false                    |
 
 ### Association
@@ -85,7 +85,7 @@ Things you may want to cover:
 | addresses     | string     | null: false                    |
 | order         | references | null: false, foreign_key: true |
 |postal_code    | string     | null: false                    |
-|prefectures_id | integer    | null: false,                   |
+|prefecture_id  | integer    | null: false,                   |
 |municipalities | string     | null: false,                   |
 |house_number   | string     | null: false,                   |
 |building_name  | string     |                                |
