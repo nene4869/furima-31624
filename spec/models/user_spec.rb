@@ -71,11 +71,17 @@ require 'rails_helper'
          expect(@user.errors.full_messages).to include("Surname can't be blank")
        end
       
-       it "名字は全角（漢字・ひらがな・カタカナ）でなければ登録できない" do
+       it "surnameは全角（漢字・ひらがな・カタカナ）でなければ登録できない" do
          @user.surname = "kana"
          @user.valid?
          expect(@user.errors.full_messages).to include("Surname Full-width characters")
        end
+
+       it "surname_kが空では登録できない" do
+        @user.surname_k = ''
+        @user.valid?
+        expect(@user.errors.full_messages).to include("Surname k can't be blank")
+      end
 
        it "surname_kのフリガナは全角（カタカナ）でなければ登録できない" do
          @user.surname_k = "かな"
