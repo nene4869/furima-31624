@@ -58,7 +58,6 @@ require 'rails_helper'
          expect(@user.errors.full_messages).to include("Password confirmation doesn't match Password")
        end
       
-      
         it 'パスワードに数字が含まれない場合無効な状態であること' do
          @user = User.new(password: 'A'+'a' * 5, password_confirmation: '1A'+'a' * 3)
          @user.valid?
@@ -116,6 +115,5 @@ require 'rails_helper'
      end
    end
  end    
-     
-                 
+  
     
