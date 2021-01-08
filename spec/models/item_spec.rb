@@ -44,9 +44,9 @@ RSpec.describe Item, type: :model do
       end
 
       it 'prefecture_id が未選択では登録できない' do
-        @item.prefecture_id = 0
+        @item.prefecture_id = 1
         @item.valid?
-        expect(@item.errors.full_messages).to include('Prefecture must be other than 0')
+        expect(@item.errors.full_messages).to include('Prefecture must be other than 1')
       end
 
       it 'day_id が未選択では登録できない' do
@@ -61,11 +61,24 @@ RSpec.describe Item, type: :model do
         expect(@item.errors.full_messages).to include("Price can't be blank")
       end
 
-      it 'priceが¥300~¥9,999,999の間空でなければ登録できない' do
-        @item.price = 100, 10_000_000
+      it 'priceが300より低いと登録できない' do
+        @item.price = 100
         @item.valid?
-        expect(@item.errors.full_messages).to include('Price is invalid. Input half-width characters.')
+        expect(@item.errors.full_messages).to include('Price must be greater than or equal to 300')
       end
+
+      it 'priceが9999999より高いと登録できない'do
+        @item.price = 10000000
+        @item.valid?
+        expect(@item.errors.full_messages).to include('Price must be less than or equal to 9999999')
+      end
+
+    it '販売価格に英字が含まれていると登録できない'do
+        @item.price = 'aaa'
+        @item.valid?
+        expect(@item.errors.full_messages).to include('Price is not a number')
+      end
+
 
       it '販売価格は半角数字なければ登録できない' do
         @item.price = '１０００'

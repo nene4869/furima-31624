@@ -8,8 +8,7 @@ FactoryBot.define do
     prefecture_id         { 38 }
     day_id                { 2 }
     price                 { 1000 }
-    user_id               { 1 }
-    created_at            { '2021-01-07 08:09:34.516625' }
-    updated_at            { '2021-01-07 08:09:34.852097' }
+   
+    association :user
   end
 end
