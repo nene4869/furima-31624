@@ -1,5 +1,6 @@
 class ItemsController < ApplicationController
   before_action :authenticate_user!, only: :new
+  before_action :move_to_index, except: [:index, :show]
 
   def index
     @items = Item.all.order(created_at: :desc)
@@ -24,12 +25,20 @@ class ItemsController < ApplicationController
 
   end
 
-  def edit
-    
+  def edit#ログインしているユーザーのidとアイテムに紐づいているユーザーのidが一致しているかの条件式
+    @item = Item.find(params[:id])
+    if @item.user.id != current_user.id
+      redirect_to action: :index
+    end
   end
 
-  def destroy
-   
+  def update
+    @item = Item.find(params[:id])
+    if @item.update(item_params)
+    redirect_to action: :show
+  else
+    render :edit
+   end
   end
 
 
@@ -40,6 +49,17 @@ class ItemsController < ApplicationController
                                  :day_id, :price).merge(user_id: current_user.id)
   end
   
+  def move_to_index
+    unless user_signed_in?
+      redirect_to action: :index
+    end
+
+
+
+   end
   
+   
+   
+
 
 end
