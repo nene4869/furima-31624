@@ -1,7 +1,7 @@
 class ItemsController < ApplicationController
-  before_action :authenticate_user!, only: [:new, :edit]
-  before_action :move_to_index, except: [:index, :show]
-  before_action :set_item, only: [:edit, :show, :update]
+  before_action :authenticate_user!, except: [:index, :show]
+  before_action :set_item, only: [:edit, :show, :update,:destroy]
+  
   
   def index
     @items = Item.all.order(created_at: :desc)
@@ -38,6 +38,14 @@ class ItemsController < ApplicationController
    end
   end
 
+ def destroy
+   if current_user.id == @item.user.id
+      @item.destroy
+   end
+    redirect_to root_path
+  end
+ end
+
 
   private
 
@@ -46,13 +54,9 @@ class ItemsController < ApplicationController
                                  :day_id, :price).merge(user_id: current_user.id)
   end
   
-  def move_to_index
-    unless user_signed_in?
-      redirect_to action: :index
-    end
- end
+  
 
- def set_item
-  @item = Item.find(params[:id])
- end
+  def set_item
+    @item = Item.find(params[:id])
+  end
 end
