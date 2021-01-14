@@ -30,11 +30,11 @@ class ItemsController < ApplicationController
   end
 
   def update
-    
-    if @item.update(item_params)
+  if @item.update(item_params)
     redirect_to action: :show
   else
     render :edit
+  
    end
   end
 
@@ -44,7 +44,7 @@ class ItemsController < ApplicationController
    end
     redirect_to root_path
   end
- end
+ 
 
 
   private
