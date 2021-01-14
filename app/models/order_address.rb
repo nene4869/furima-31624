@@ -10,8 +10,9 @@ with_options presence: true do
   validates    :house_number     
   validates    :phone_number,    format: { with: /\A\d{11}\z/ }
   validates    :token
-
-  #extend ActiveHash::Associations::ActiveRecordExtensions
+  validates    :user_id
+  validates    :item_id
+ 
   
   validates    :prefecture_id,    numericality: { other_than: 1, message: "can't be blank" }  
 end
