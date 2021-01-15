@@ -80,6 +80,13 @@ RSpec.describe OrderAddress, type: :model do
       expect(@order_address.errors.full_messages).to include("Phone number is invalid")
    end
 
+   it 'phone_mumberはハイフンは不要で、12桁以上だと登録できないこと' do
+    @order_address.phone_number = '1234567890097'
+    @order_address.valid?
+    expect(@order_address.errors.full_messages).to include("Phone number is invalid")
+ end
+
+
    it 'user_idが空だと購入できないこと' do
     @order_address.user_id = ""
     @order_address.valid?
