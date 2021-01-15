@@ -9,6 +9,7 @@ class Item < ApplicationRecord
   validates   :price, numericality: {greater_than_or_equal_to: 300 }
   validates   :price, numericality: {less_than_or_equal_to: 9_999_999}
    
+  has_one :order  
   belongs_to :user
 
   extend ActiveHash::Associations::ActiveRecordExtensions
