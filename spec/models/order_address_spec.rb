@@ -5,7 +5,7 @@ RSpec.describe OrderAddress, type: :model do
       item = FactoryBot.create(:item)
       user = FactoryBot.create(:user)
       sleep 1
-      @order_address = FactoryBot.build(:order_address,item_id: 1 ,user_id: 1)
+      @order_address = FactoryBot.build(:order_address,item_id: item.id ,user_id: user.id)
     end
 
     context '購入がうまくいくとき' do

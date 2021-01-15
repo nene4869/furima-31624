@@ -24,7 +24,7 @@ class ItemsController < ApplicationController
    end
 
   def edit
-    if @item.user.id != current_user.id
+    if @item.user.id != current_user.id || @item.order != nil
       redirect_to action: :index
     end
   end

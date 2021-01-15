@@ -28,7 +28,8 @@
       <span class="item-postage">
         <%= @item.shipping_charge.name %>
       </span>
-      <% if user_signed_in? && current_user.id == @item.user_id %>
+<% if user_signed_in? && @item.order == nil %>  
+  <%if current_user.id == @item.user_id %>
 
     <%= link_to '商品の編集', edit_item_path, method: :get, class: "item-red-btn" %>
     <p class='or-text'>or</p>
@@ -37,17 +38,13 @@
    
    <%= link_to '購入画面に進む',item_orders_path(item_id:@item.id) ,class:"item-red-btn"%>
   <%end%>
+<%end%>
      <div class="item-explain-box">
       <span><%= @item.name%></span>
     </div>
    
     </div>
 
-    
-  
-  
-     
-  
     <table class="detail-table">
       <tbody>
         <tr>
