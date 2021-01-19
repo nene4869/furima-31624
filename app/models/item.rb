@@ -3,6 +3,7 @@ class Item < ApplicationRecord
     validates   :name
     validates   :description
     validates   :price
+    validates   :image
   end
 
   validates   :price, numericality: { with: /\A[0-9]+\z/, message: 'is invalid. Input half-width characters.' }
