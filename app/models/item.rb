@@ -12,6 +12,7 @@ class Item < ApplicationRecord
    
   has_one :order  
   belongs_to :user
+  has_one_attached :image
 
   extend ActiveHash::Associations::ActiveRecordExtensions
   belongs_to :category
@@ -19,7 +20,7 @@ class Item < ApplicationRecord
   belongs_to :shipping_charge
   belongs_to :prefecture
   belongs_to :day
-  has_one_attached :image
+ 
 
   validates :description, presence: true
 
